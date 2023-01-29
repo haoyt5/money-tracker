@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
 import { AnyError } from 'mongodb'
-import { Database, dbPath } from './Database'
+import { Database, dbPath } from './db/Database'
 
 const app: Application = express()
 const port: number = 8080
