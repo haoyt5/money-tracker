@@ -17,6 +17,7 @@ const PageBackWardButton: FunctionComponent<PageBackWardButtonProps> = ({
                 <Button
                     color="info"
                     className="font-medium bg-blue-300 hover:bg-white font-semibold border-0 "
+                    size="sm"
                 >
                     {'＜'}
                 </Button>

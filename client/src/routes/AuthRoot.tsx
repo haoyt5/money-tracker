@@ -20,7 +20,7 @@ const AuthRoot: FunctionComponent<AuthRootProps> = () => {
                     Money Tracker
                 </h1>
             </div>
-            <div>
+            <div className="px-3">
                 <Outlet />
             </div>
         </>
