@@ -7,7 +7,6 @@ interface AuthRootProps {}
 
 const AuthRoot: FunctionComponent<AuthRootProps> = () => {
     const { pathname, state } = useLocation()
-    console.log('location', pathname, state)
 
     return (
         <>
