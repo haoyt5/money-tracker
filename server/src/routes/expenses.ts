@@ -24,11 +24,36 @@ app.post('/', async (req: Request, res: Response) => {
     }
 })
 app.get('/', async (_req, res: Response) => {
-    return res.status(200).json({ data: 'GET: /expenses' })
+    try {
+        const expenses = await Expense.find({})
+        return res.status(200).json({ data: { expenses } })
+    } catch (e) {
+        return res.status(500).json({ message: JSON.stringify(e) })
+    }
 })
 app.get('/summary', async (_req, res: Response) => {
     console.log('GET: /expenses/summary')
-    return res.status(200).json({ data: 'GET: /expenses/summary' })
+    const summary = {
+        bills: 0,
+        grocery: 0,
+        health: 0,
+        travel: 0,
+        others: 0,
+    }
+    const updateSummary = await Expense.aggregate([
+        {
+            $group: {
+                _id: '$category',
+                amount: { $sum: '$amount' },
+            },
+        },
+    ])
+    updateSummary.map((item) => {
+        const k = item._id as keyof typeof summary
+        const amount = item.amount
+        summary[k] = amount
+    })
+    return res.status(200).json({ data: { ...summary } })
 })
 
 export default app
