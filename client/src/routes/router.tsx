@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import AuthRoot from './AuthRoot'
 import ErrorPage from '../pages/ErrorPage'
 import SummaryPage from '../pages/SummaryPage'
-import ExpensesPage from '../pages/Expenses'
+import ExpensesPage from '../pages/ExpensesPage'
 
 export const router = createBrowserRouter([
     {

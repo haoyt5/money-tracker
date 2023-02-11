@@ -1,10 +1,14 @@
 import { FunctionComponent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'reactstrap'
+import useFetch from '../hooks/useFetch'
+
 interface SummaryPageProps {}
 
 const SummaryPage: FunctionComponent<SummaryPageProps> = () => {
     let location = useLocation()
+    const { status, data } = useFetch('/expenses/summary')
+    console.log(status, data)
     return (
         <>
             <div>Expense summary:</div>
