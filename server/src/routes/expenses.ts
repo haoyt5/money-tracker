@@ -1,37 +1,34 @@
-import { Router, Response } from 'express'
+import { Router, Request, Response } from 'express'
+import { Expense } from '../models/expense'
 // import auth from '../middlewares/auth'
 // import validator from '../middlewares/validator'
 
 const app = Router()
-app.post('/', (_req, res: Response) => {
-    res.status(200)
-    return res.status(200).json({ data: 'POST: /expenses' })
+const CATEGORY_TYPE = ['bills', 'grocery', 'health', 'travel', 'others']
+app.post('/', async (req: Request, res: Response) => {
+    try {
+        if (
+            !req.body.amount ||
+            !req.body.category ||
+            !CATEGORY_TYPE.includes(req.body.category)
+        ) {
+            return res.status(422).json({ message: 'invalid body', data: {} })
+        }
+        const amount = req.body.amount
+        const category = req.body.category
+        const expense = new Expense({ user: 'default', amount, category })
+        const newExpense = await expense.save()
+        return res.status(200).json({ data: { newExpense } })
+    } catch (e) {
+        return res.status(500).json({ message: JSON.stringify(e) })
+    }
 })
-app.get('/', (_req, res: Response) => {
-    res.status(200)
+app.get('/', async (_req, res: Response) => {
     return res.status(200).json({ data: 'GET: /expenses' })
 })
-app.get('/summary', (_req, res: Response) => {
+app.get('/summary', async (_req, res: Response) => {
     console.log('GET: /expenses/summary')
     return res.status(200).json({ data: 'GET: /expenses/summary' })
 })
-// app.post('/', auth, validator(POST_APP_BODY, 'body' as keyof object), createApp)
-// app.patch('/:appId', auth, updateApp)
-// app.get('/:appId', auth, getApp)
-// app.post(
-//     '/:appId/versions',
-//     auth,
-//     fileValidator('file'),
-//     validator(POST_VERSION_PARAM, 'params' as keyof object),
-//     validator(POST_VERSION_BODY, 'body' as keyof object),
-//     createVersionByApp
-// )
-// app.get(
-//     '/:appId/versions',
-//     auth,
-//     validator(GET_VERSIONS_BY_APP_PARAMS, 'params' as keyof object),
-//     getAllVersionsByApp
-// )
-// app.post('/:appId/versions/check', auth, verifyAppChecksum)
 
 export default app
