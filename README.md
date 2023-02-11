@@ -1,3 +1,5 @@
+- [REST API documentation](https://github.com/haoyt5/money-tracker/wiki/REST-API-Documentation)
+
 ## Set up MongoDB
 
 1. Install the MongoDB Community Edition
