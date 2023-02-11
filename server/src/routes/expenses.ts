@@ -1,7 +1,5 @@
 import { Router, Request, Response } from 'express'
 import { Expense } from '../models/expense'
-// import auth from '../middlewares/auth'
-// import validator from '../middlewares/validator'
 
 const app = Router()
 const CATEGORY_TYPE = ['bills', 'grocery', 'health', 'travel', 'others']
