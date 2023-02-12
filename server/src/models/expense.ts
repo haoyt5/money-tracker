@@ -6,7 +6,7 @@ export enum expenseCategory {
     grocery = 'grocery',
     health = 'health',
     travel = 'travel',
-    other = 'others',
+    others = 'others',
 }
 export interface IExpense {
     user: string
