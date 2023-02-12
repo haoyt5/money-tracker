@@ -1,20 +1,14 @@
 import { FunctionComponent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'reactstrap'
-import useFetch from '../hooks/useFetch'
-import { useSubscribeSocketEvent } from '../context/SocketProvider'
+import useSubscribeFetch from '../hooks/useSubscribeFetch'
 
 interface SummaryPageProps {}
 
 const SummaryPage: FunctionComponent<SummaryPageProps> = () => {
     let location = useLocation()
-    const { status, data } = useFetch('/expenses/summary')
-    console.log('[useFetch]', status, data)
-    const handleSocketEvent = () => {
-        console.log('[socketIO]: expenses-updated event received!')
-    }
-    useSubscribeSocketEvent('expenses-updated', handleSocketEvent)
-
+    const { status, data } = useSubscribeFetch('/expenses/summary')
+    console.log('[useSubscribeFetch]', status, data)
     return (
         <>
             <div>Expense summary:</div>

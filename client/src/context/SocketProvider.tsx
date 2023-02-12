@@ -49,7 +49,6 @@ export const useSubscribeSocketEvent = (
     eventName: string,
     eventHandler: (...args: any[]) => void
 ) => {
-    // const [isConnected, setIsConnected] = useState(socket.connected)
     const { socket } = useContext(SocketContext)
     useEffect(() => {
         console.log('[socketIO]: adding listener', eventName)
@@ -58,6 +57,7 @@ export const useSubscribeSocketEvent = (
             console.log('[socketIO]: remove listener', eventName)
             socket?.off(eventName, eventHandler)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventName])
 }
 
