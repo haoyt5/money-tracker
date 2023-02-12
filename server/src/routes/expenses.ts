@@ -18,7 +18,7 @@ app.post('/', async (req: Request, res: Response) => {
         const category = req.body.category
         const expense = new Expense({ user: 'default', amount, category })
         const newExpense = await expense.save()
-        await io.emit('expenses-updated')
+        io.emit('expenses-updated')
         return res.status(202).json({
             message: 'create expense successfully',
             data: { newExpense },
