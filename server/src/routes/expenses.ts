@@ -17,7 +17,10 @@ app.post('/', async (req: Request, res: Response) => {
         const category = req.body.category
         const expense = new Expense({ user: 'default', amount, category })
         const newExpense = await expense.save()
-        return res.status(200).json({ data: { newExpense } })
+        return res.status(202).json({
+            message: 'create expense successfully',
+            data: { newExpense },
+        })
     } catch (e) {
         return res.status(500).json({ message: JSON.stringify(e) })
     }
@@ -26,7 +29,10 @@ app.get('/', async (_req, res: Response) => {
     try {
         res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
         const expenses = await Expense.find({})
-        return res.status(200).json({ data: { expenses } })
+        return res.status(200).json({
+            message: 'create expense successfully',
+            data: { expenses },
+        })
     } catch (e) {
         return res.status(500).json({ message: JSON.stringify(e) })
     }
@@ -54,7 +60,10 @@ app.get('/summary', async (_req, res: Response) => {
             const amount = item.amount
             summary[k] = amount
         })
-        return res.status(200).json({ data: { ...summary } })
+        return res.status(200).json({
+            message: 'create expense successfully',
+            data: { ...summary },
+        })
     } catch (e) {
         return res.status(500).json({ message: JSON.stringify(e) })
     }
