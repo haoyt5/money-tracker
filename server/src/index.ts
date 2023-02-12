@@ -7,9 +7,10 @@ import routes from './routes'
 const app: Application = express()
 const port: number = 8080
 const clientOrigin: string = 'http://localhost:3000'
+
 const httpServer = createServer(app)
 
-const io = new Server(httpServer, {
+export const io = new Server(httpServer, {
     cors: {
         origin: clientOrigin,
     },
@@ -32,6 +33,7 @@ app.get('/', (_req, _res) => {
 // })
 
 routes(app)
+
 httpServer.listen(port, () => {
     console.log(`[express] server run on http://localhost:${port}/`)
 })
@@ -43,10 +45,10 @@ db.connect((error: AnyError) => {
 })
 
 io.on('connection', function (socket) {
-    console.log('[httpServer] client connected to the WebSocket')
+    console.log('[httpServer: socket.io] client connected')
 
     socket.on('disconnect', () => {
-        console.log('[httpServer] client disconnected')
+        console.log('[httpServer: socket.io] client disconnected')
     })
 
     // socket.on('chat message', function (msg) {

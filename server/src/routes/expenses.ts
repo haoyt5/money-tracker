@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { Expense } from '../models/expense'
+import { io } from '../index'
 
 const app = Router()
 const CATEGORY_TYPE = ['bills', 'grocery', 'health', 'travel', 'others']
@@ -17,6 +18,7 @@ app.post('/', async (req: Request, res: Response) => {
         const category = req.body.category
         const expense = new Expense({ user: 'default', amount, category })
         const newExpense = await expense.save()
+        await io.emit('expenses-updated')
         return res.status(202).json({
             message: 'create expense successfully',
             data: { newExpense },
@@ -30,7 +32,7 @@ app.get('/', async (_req, res: Response) => {
         res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
         const expenses = await Expense.find({})
         return res.status(200).json({
-            message: 'create expense successfully',
+            message: 'get expense successfully',
             data: { expenses },
         })
     } catch (e) {
@@ -61,7 +63,7 @@ app.get('/summary', async (_req, res: Response) => {
             summary[k] = amount
         })
         return res.status(200).json({
-            message: 'create expense successfully',
+            message: 'get summary successfully',
             data: { ...summary },
         })
     } catch (e) {
