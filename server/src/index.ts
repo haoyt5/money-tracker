@@ -6,14 +6,13 @@ import { Database, dbPath } from './db/Database'
 import routes from './routes'
 const app: Application = express()
 const port: number = 8080
-
+const clientOrigin: string = 'http://localhost:3000'
 const httpServer = createServer(app)
-const io = new Server(httpServer, {
-    /* options */
-})
 
-io.on('connection', (socket) => {
-    // ...
+const io = new Server(httpServer, {
+    cors: {
+        origin: clientOrigin,
+    },
 })
 
 app.use(
