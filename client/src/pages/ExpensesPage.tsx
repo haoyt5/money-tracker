@@ -1,6 +1,6 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent } from 'react'
 import { Button } from 'reactstrap'
-import ExpenseTable from '../components/ExpenseTable'
+import ExpenseTableContainer from '../components/ExpenseTableContainer'
 import useSubscribeFetch from '../hooks/useSubscribeFetch'
 
 interface ExpensesPageProps {}
@@ -12,9 +12,7 @@ const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
     return (
         <>
             <div>Add a new expense:</div>
-            <div>
-                <ExpenseTable status={status} data={data} />
-            </div>
+
             <div>
                 <Button
                     color="info"
@@ -24,6 +22,9 @@ const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
                 </Button>
             </div>
             <div>Expense history:</div>
+            <div>
+                <ExpenseTableContainer status={status} data={data} />
+            </div>
         </>
     )
 }
