@@ -17,11 +17,12 @@ app.post('/', async (req: Request, res: Response) => {
         const amount = req.body.amount
         const category = req.body.category
         const expense = new Expense({ user: 'default', amount, category })
-        const newExpense = await expense.save()
+        const { _id, createdAt } = await expense.save()
+
         io.emit('expenses-updated')
         return res.status(202).json({
             message: 'create expense successfully',
-            data: { newExpense },
+            data: { id: _id, createdAt, amount, category },
         })
     } catch (e) {
         return res.status(500).json({ message: JSON.stringify(e) })
@@ -30,7 +31,10 @@ app.post('/', async (req: Request, res: Response) => {
 app.get('/', async (_req, res: Response) => {
     try {
         res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
-        const expenses = await Expense.find({})
+        const expenses = await Expense.find(
+            {},
+            { amount: 1, category: 1, createdAt: 1 }
+        ).sort('-createdAt')
         return res.status(200).json({
             message: 'get expense successfully',
             data: { expenses },

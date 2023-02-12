@@ -12,6 +12,7 @@ export interface IExpense {
     user: string
     category: string
     amount: number
+    createdAt?: Date
 }
 
 const expenseSchema = new Schema<IExpense>(
