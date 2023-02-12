@@ -3,7 +3,7 @@ import { useSubscribeSocketEvent } from '../context/SocketProvider'
 
 const useSubscribeFetch = (endpoint: string) => {
     const [status, setStatus] = useState('idle')
-    const [data, setData] = useState({})
+    const [data, setData] = useState(null)
     const [reFetch, setRefetch] = useState(true)
     const handleSocketEvent = () => {
         setRefetch(true)
@@ -14,10 +14,10 @@ const useSubscribeFetch = (endpoint: string) => {
         if (!endpoint) return
         const fetchData = async () => {
             setStatus('fetching')
-            setData({})
+            setData(null)
             const response = await fetch(`http://localhost:8080${endpoint}`)
             const data = await response.json()
-            setData(data)
+            setData(data.data)
             setStatus('fetched')
             setRefetch(false)
         }

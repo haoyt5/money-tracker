@@ -1,16 +1,20 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { Button } from 'reactstrap'
+import ExpenseTable from '../components/ExpenseTable'
 import useSubscribeFetch from '../hooks/useSubscribeFetch'
 
 interface ExpensesPageProps {}
 
 const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
+    // const [loading, setLoading] = useState(true)
     const { status, data } = useSubscribeFetch('/expenses')
-    console.log('[useSubscribeFetch]', status, data)
 
     return (
         <>
             <div>Add a new expense:</div>
+            <div>
+                <ExpenseTable status={status} data={data} />
+            </div>
             <div>
                 <Button
                     color="info"
