@@ -43,19 +43,19 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
     // console.log(watch('amount')) // watch input value by passing the name of it
     useEffect(() => {
         if (formState.isSubmitSuccessful) {
-            reset({ amount: 0, category: 'Select One' })
+            reset({ amount: 0.0, category: 'Select One' })
         }
     }, [formState, reset])
     return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)} className="font-medium">
             {/* register your input into the hook by invoking the "register" function */}
             {/* <input defaultValue="test" {...register('example')} /> */}
             <FormGroup>
                 <Row>
                     <Col xs="4" className="d-flex align-items-center">
-                        <Label for="amount" className="m-0">
-                            Amount
+                        <Label for="amount" className="m-0 ">
+                            <span className="text-lg">Amount:</span>
                         </Label>
                     </Col>
                     <Col xs="8">
@@ -65,7 +65,9 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
                                 <Input
                                     id="amount"
                                     placeholder="$0.0"
+                                    className="text-end"
                                     type="number"
+                                    step={0.01}
                                     invalid={errors.amount ? true : false}
                                     {...field}
                                 />
@@ -81,7 +83,7 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
                 <Row>
                     <Col xs="4" className="d-flex align-items-center">
                         <Label for="category" className="m-0">
-                            Category
+                            <span className="text-lg ">Category:</span>
                         </Label>
                     </Col>
                     <Col xs="8">
@@ -120,7 +122,7 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
             {/* {(errors.amount || errors.category) && (
                 <span>amount field is required</span>
             )} */}
-            <Row>
+            <Row className="pt-2 pb-4">
                 <Col xs="4">
                     <Button
                         color="primary"

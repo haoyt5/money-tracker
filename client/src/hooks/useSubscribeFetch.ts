@@ -8,7 +8,7 @@ const useSubscribeFetch = (endpoint: string) => {
     const handleSocketEvent = () => {
         setRefetch(true)
     }
-    useSubscribeSocketEvent('expenses-updated', handleSocketEvent)
+    useSubscribeSocketEvent('add-expense', handleSocketEvent)
 
     useEffect(() => {
         if (!endpoint) return

@@ -9,7 +9,7 @@ const AuthRoot: FunctionComponent<AuthRootProps> = () => {
     const { pathname, state } = useLocation()
     return (
         <>
-            <div className="nav flex p-3 bg-blue-300 text-gray-700">
+            <div className="nav flex p-3 text-zinc-700 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300 shadow-sm ">
                 <PageBackwardButton
                     pathname={pathname}
                     from={state?.from ? state.from : ''}

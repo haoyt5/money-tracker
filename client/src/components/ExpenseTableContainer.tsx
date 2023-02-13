@@ -37,17 +37,26 @@ const ExpenseTableContainer: FunctionComponent<ExpenseTableContainerProps> = ({
         <Table striped className="font-medium">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th style={{ paddingLeft: '40px' }}>Date</th>
                     <th>Category</th>
-                    <th className="text-end">Amount</th>
+                    <th className="text-end" style={{ paddingRight: '40px' }}>
+                        Amount
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {pageData.map((item) => (
                     <tr key={item._id}>
-                        <td>{formatDate(item.createdAt)}</td>
+                        <td style={{ paddingLeft: '40px' }}>
+                            {formatDate(item.createdAt)}
+                        </td>
                         <td className="text-capitalize">{item.category}</td>
-                        <td className="text-end">{'$' + item.amount}</td>
+                        <td
+                            className="text-end"
+                            style={{ paddingRight: '40px' }}
+                        >
+                            {'$' + Number(item.amount).toFixed(2)}
+                        </td>
                     </tr>
                 ))}
             </tbody>
