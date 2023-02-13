@@ -14,7 +14,11 @@ interface ExpenseTableContainerProps {
 }
 const formatDate = (ISODateString: string) => {
     const date = new Date(ISODateString)
-    return date.toLocaleDateString('en-US')
+    const localeString = date.toLocaleDateString('en-US')
+    const mmdd = localeString.substring(0, localeString.length - 4)
+    const year = date.getFullYear().toString()
+    const yy = year[2] + year[3]
+    return mmdd + yy
 }
 const ExpenseTableContainer: FunctionComponent<ExpenseTableContainerProps> = ({
     status,
@@ -28,22 +32,22 @@ const ExpenseTableContainer: FunctionComponent<ExpenseTableContainerProps> = ({
             setPageData(tenItems)
         }
     }, [status, data])
-    console.log('pageData', pageData)
+
     return (
-        <Table striped>
+        <Table striped className="font-medium">
             <thead>
                 <tr>
                     <th>Date</th>
                     <th>Category</th>
-                    <th>Amount</th>
+                    <th className="text-end">Amount</th>
                 </tr>
             </thead>
             <tbody>
                 {pageData.map((item) => (
                     <tr key={item._id}>
                         <td>{formatDate(item.createdAt)}</td>
-                        <td>{item.category}</td>
-                        <td>{item.amount}</td>
+                        <td className="text-capitalize">{item.category}</td>
+                        <td className="text-end">{'$' + item.amount}</td>
                     </tr>
                 ))}
             </tbody>

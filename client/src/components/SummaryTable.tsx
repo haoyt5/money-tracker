@@ -24,33 +24,33 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
     data,
 }) => {
     return (
-        <Table striped>
+        <Table striped className="font-medium">
             <thead>
                 <tr>
                     <th>Category</th>
-                    <th>Amount</th>
+                    <th className="text-end">Amount</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Bills</td>
-                    <td>{data && data.bills}</td>
+                    <td className="text-end">${data && data.bills}</td>
                 </tr>
                 <tr>
                     <td>Grocery</td>
-                    <td>{data && data.grocery}</td>
+                    <td className="text-end">${data && data.grocery}</td>
                 </tr>
                 <tr>
                     <td>Health</td>
-                    <td>{data && data.health}</td>
+                    <td className="text-end">${data && data.health}</td>
                 </tr>
                 <tr>
                     <td>Travel</td>
-                    <td>{data && data.travel}</td>
+                    <td className="text-end">${data && data.travel}</td>
                 </tr>
                 <tr>
                     <td>Others</td>
-                    <td>{data && data.others}</td>
+                    <td className="text-end">${data && data.others}</td>
                 </tr>
             </tbody>
         </Table>

@@ -1,8 +1,7 @@
 import { FunctionComponent } from 'react'
-import { Button } from 'reactstrap'
 import ExpenseTableContainer from '../components/ExpenseTableContainer'
 import useSubscribeFetch from '../hooks/useSubscribeFetch'
-
+import ExpenseForm from '../components/ExpenseForm'
 interface ExpensesPageProps {}
 
 const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
@@ -11,17 +10,17 @@ const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
 
     return (
         <>
-            <div>Add a new expense:</div>
+            <div className="py-3">
+                <h3 className="font-medium text-xl">Add a new expense:</h3>
+            </div>
 
             <div>
-                <Button
-                    color="info"
-                    className="font-medium bg-blue-300 hover:bg-blue-400 border-0 "
-                >
-                    Confirm
-                </Button>
+                <ExpenseForm />
             </div>
-            <div>Expense history:</div>
+            <div className="py-3">
+                <h3 className="font-medium text-xl">Expense history:</h3>
+            </div>
+
             <div>
                 <ExpenseTableContainer status={status} data={data} />
             </div>
