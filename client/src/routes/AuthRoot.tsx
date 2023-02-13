@@ -9,13 +9,13 @@ const AuthRoot: FunctionComponent<AuthRootProps> = () => {
     const { pathname, state } = useLocation()
     return (
         <>
-            <div className="nav flex p-3 text-zinc-700 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300 shadow-sm ">
+            <div className="nav flex p-3 text-zinc-700 bg-gradient-to-r from-blue-300 via-blue-300 to-blue-400 shadow-sm ">
                 <PageBackwardButton
                     pathname={pathname}
                     from={state?.from ? state.from : ''}
                 />
                 <h1 className="flex-grow font-bold text-2xl text-center">
-                    {pathname === '/' ? 'Money Tracker' : 'Expense History'}
+                    {pathname === '/' ? 'Money Tracker' : 'Expenses'}
                 </h1>
             </div>
             <div className="px-3">

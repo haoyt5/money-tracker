@@ -16,7 +16,7 @@ const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
             </div>
 
             <div>
-                <Card className="border-0 p-3 shadow-sm shadow-zinc-500/40 ">
+                <Card className="border-slate-100 p-3 shadow-sm shadow-zinc-500/40 ">
                     <ExpenseForm />
                 </Card>
             </div>
@@ -24,7 +24,7 @@ const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
                 <h3 className="font-medium text-xl">Expense history:</h3>
             </div>
 
-            <div>
+            <div className="pb-4">
                 <Card className="border-0 py-3 shadow-sm shadow-zinc-500/40 ">
                     <ExpenseTableContainer status={status} data={data} />
                 </Card>

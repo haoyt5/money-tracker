@@ -24,6 +24,7 @@ const useSubscribeFetch = (endpoint: string) => {
         if (reFetch) {
             fetchData()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reFetch])
 
     return { status, data }
