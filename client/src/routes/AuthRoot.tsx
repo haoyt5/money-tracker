@@ -7,7 +7,6 @@ interface AuthRootProps {}
 
 const AuthRoot: FunctionComponent<AuthRootProps> = () => {
     const { pathname, state } = useLocation()
-
     return (
         <>
             <div className="nav flex p-3 bg-blue-300 text-gray-700">
@@ -16,7 +15,7 @@ const AuthRoot: FunctionComponent<AuthRootProps> = () => {
                     from={state?.from ? state.from : ''}
                 />
                 <h1 className="flex-grow font-bold text-2xl text-center">
-                    Money Tracker
+                    {pathname === '/' ? 'Money Tracker' : 'Expense History'}
                 </h1>
             </div>
             <div className="px-3">
