@@ -6,6 +6,7 @@ import {
     ValidationValue,
 } from 'react-hook-form'
 import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap'
+import SubmitButton from './SubmitButton'
 type Inputs = {
     amount: number
     category: string
@@ -124,14 +125,9 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
             )} */}
             <Row className="pt-2 pb-4">
                 <Col xs="4">
-                    <Button
-                        color="primary"
-                        className="ring active:ring border-0 w-100 bg-blue-500 font-medium disabled:text-zinc-600 disabled:bg-gray-400 disabled:ring-0 hover:bg-blue-500 hover:text-gray-900 hover:ring hover:font-semi-bold  focus:text-black focus:bg-blue-500 focus:ring "
-                        type="submit"
-                        disabled={!isValid}
-                    >
+                    <SubmitButton disabled={!isValid} className="w-100">
                         Confirm
-                    </Button>
+                    </SubmitButton>
                 </Col>
             </Row>
         </Form>
