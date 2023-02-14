@@ -5,7 +5,7 @@ import {
     Controller,
     ValidationValue,
 } from 'react-hook-form'
-import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Col, Row } from 'reactstrap'
 import SubmitButton from './SubmitButton'
 type Inputs = {
     amount: number
@@ -16,9 +16,7 @@ interface ExpenseFormProps {}
 const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
     const {
         control,
-        // register,
         handleSubmit,
-        // watch,
         reset,
         formState,
         formState: { isValid, errors },
@@ -27,31 +25,26 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
         const response = await fetch('http://localhost:8080/expenses', {
             method: 'POST',
             mode: 'no-cors',
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            cache: 'no-cache',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
             },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
             body: JSON.stringify(data),
         })
-        console.log(response)
         return
     }
     const onSubmit: SubmitHandler<Inputs> = (data) => handleSubmitExpense(data)
 
-    // console.log(watch('amount')) // watch input value by passing the name of it
     useEffect(() => {
         if (formState.isSubmitSuccessful) {
             reset({ amount: 0.0, category: 'Select One' })
         }
     }, [formState, reset])
     return (
-        /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <Form onSubmit={handleSubmit(onSubmit)} className="font-medium">
-            {/* register your input into the hook by invoking the "register" function */}
-            {/* <input defaultValue="test" {...register('example')} /> */}
             <FormGroup>
                 <Row>
                     <Col xs="4" className="d-flex align-items-center">
@@ -117,12 +110,6 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
                     </Col>
                 </Row>
             </FormGroup>
-            {/* include validation with required or other standard HTML validation rules */}
-            {/* <input {...register('exampleRequired', { required: true })} /> */}
-            {/* errors will return when field validation fails  */}
-            {/* {(errors.amount || errors.category) && (
-                <span>amount field is required</span>
-            )} */}
             <Row className="pt-2 pb-4">
                 <Col xs="4">
                     <SubmitButton disabled={!isValid} className="w-100">
