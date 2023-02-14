@@ -21,7 +21,7 @@ Default.argTypes = {
         defaultValue: `fall`,
     },
     className: {
-        description: `Appends new className`,
+        description: `Appends new className with support of bootstrap`,
     },
 }
 export default Default
