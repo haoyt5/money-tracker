@@ -34,33 +34,41 @@ const ExpenseTableContainer: FunctionComponent<ExpenseTableContainerProps> = ({
     }, [status, data])
 
     return (
-        <Table striped className="font-medium">
-            <thead>
-                <tr>
-                    <th style={{ paddingLeft: '40px' }}>Date</th>
-                    <th>Category</th>
-                    <th className="text-end" style={{ paddingRight: '40px' }}>
-                        Amount
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {pageData.map((item) => (
-                    <tr key={item._id}>
-                        <td style={{ paddingLeft: '40px' }}>
-                            {formatDate(item.createdAt)}
-                        </td>
-                        <td className="text-capitalize">{item.category}</td>
-                        <td
+        <div className="mb-2" style={{ minHeight: '450.5px' }}>
+            <Table striped className="font-medium m-0">
+                <thead>
+                    <tr>
+                        <th style={{ paddingLeft: '40px' }}>Date</th>
+                        <th>Category</th>
+                        <th
                             className="text-end"
                             style={{ paddingRight: '40px' }}
                         >
-                            {'$' + Number(item.amount).toFixed(2)}
-                        </td>
+                            Amount
+                        </th>
                     </tr>
-                ))}
-            </tbody>
-        </Table>
+                </thead>
+                <tbody>
+                    {pageData.length > 0 &&
+                        pageData.map((item) => (
+                            <tr key={item._id}>
+                                <td style={{ paddingLeft: '40px' }}>
+                                    {formatDate(item.createdAt)}
+                                </td>
+                                <td className="text-capitalize">
+                                    {item.category}
+                                </td>
+                                <td
+                                    className="text-end"
+                                    style={{ paddingRight: '40px' }}
+                                >
+                                    {'$' + Number(item.amount).toFixed(2)}
+                                </td>
+                            </tr>
+                        ))}
+                </tbody>
+            </Table>
+        </div>
     )
 }
 
