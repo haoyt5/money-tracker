@@ -6,7 +6,6 @@ import { Card } from 'reactstrap'
 interface ExpensesPageProps {}
 
 const ExpensesPage: FunctionComponent<ExpensesPageProps> = () => {
-    // const [loading, setLoading] = useState(true)
     const { status, data } = useSubscribeFetch('/expenses')
 
     return (

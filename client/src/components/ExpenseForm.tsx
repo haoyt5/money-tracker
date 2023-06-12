@@ -22,7 +22,7 @@ const ExpenseForm: FunctionComponent<ExpenseFormProps> = () => {
         formState: { isValid, errors },
     } = useForm<Inputs>()
     const handleSubmitExpense = async (data: Inputs) => {
-        const response = await fetch('http://localhost:8080/expenses', {
+        await fetch('http://localhost:8080/expenses', {
             method: 'POST',
             mode: 'no-cors',
             cache: 'no-cache',
