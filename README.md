@@ -1,3 +1,21 @@
+## How to run the app
+
+1. Assuming you have nodejs and mongoDB Community install. Start the MongoDB `brew services start mongodb-community@6.0`
+
+2. Launch the local server by running `npm run dev` at the **/server** directory (`./server`). An express server will be up and running on [http://localhost:3001](http://localhost:3001).
+
+```
+cd server
+npm run dev
+```
+
+4. Start the client service by running `npm run start` at the **/client** directory (`./client`). A new tab will open in the browser. Go to [http://localhost:3000](http://localhost:3000) to view the **Tesla Dataset Exploration App**
+
+```
+cd client
+npm run start
+```
+
 ## Documentation
 
 - [REST API documentation](https://github.com/haoyt5/money-tracker/wiki/REST-API-Documentation)
@@ -74,11 +92,3 @@ server/
 ┣ package.json
 ┗ tsconfig.json
 ```
-
-## Set up MongoDB
-
-1. Install the MongoDB Community Edition
-2. [Run MongoDB Community Edition](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)
-3. `brew services stop mongodb-community@6.0`
-   `brew services start mongodb-community@6.0`
-   `mongosh`
